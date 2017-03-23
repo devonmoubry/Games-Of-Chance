@@ -31,29 +31,32 @@ var card1 = new Card('Hearts', 'Queen');
 console.log(card1);
 var newDeck = Deck();
 console.log(newDeck);
+
 /******************************************************************************/
-function Dice(value) {
-
+function Dice(sides) {
     'use strict';
-    this.value = value;
+
+    this.sides = sides;
+
     this.roll = function() {
-
-        return Math.ceil(Math.random() * this.value);
-
+        this.value = Math.ceil(Math.random() * this.sides);
     };
 
+    this.roll();
 }
-
-var die = new Dice(6);
 
 /******************************************************************************/
 function getProbabilities() {
     var probabilities = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
     for (var i = 0; i < 1000; i++) {
-        var die1 = die.roll(6);
-        var die2 = die.roll(6);
-        var sum = die1 + die2;
+        var die1 = new Dice(6);
+        var die2 = new Dice(6);
+
+        die1.roll();
+        die2.roll();
+
+        var sum = die1.value + die2.value;
         probabilities[sum-2]++;
     }
 
