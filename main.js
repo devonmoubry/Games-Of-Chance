@@ -12,22 +12,25 @@ function Card(suit, value) {
 }
 
 function Deck() {
-
+  console.log('make me a card');
     'use strict'
-    this.deck = new Array();
-
-    this.makeDeck = makeDeck;
-
+    this.deck = [];
+    var suits = ["Hearts", "Spades", "Clubs", "Diamonds"];
+    var values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
+    //this.shuffle = shuffle;
+    //this.draw = draw;
+    for (var s = 0; s < 4; s++) {
+        for (var v = 0; v < 13; v++) {
+          this.deck.push(values[v] + ' of ' + suits[s]);
+        }
+    }
+    return this.deck;
 }
 
-function makeDeck() {
-
-    var suits = new Array("2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace");
-    var values = new Array("Hearts", "Spades", "Clubs", "Diamonds");
-    var deck = new Array(52);
-
-}
-
+var card1 = new Card('Hearts', 'Queen');
+console.log(card1);
+var newDeck = Deck();
+console.log(newDeck);
 /******************************************************************************/
 function Dice(value) {
 
