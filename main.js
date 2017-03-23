@@ -48,19 +48,16 @@ var die = new Dice(6);
 
 /******************************************************************************/
 function getProbabilities() {
-    var probArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    var probabilities = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
     for (var i = 0; i < 1000; i++) {
-
         var die1 = die.roll(6);
         var die2 = die.roll(6);
         var sum = die1 + die2;
-        probArray[sum-2]++;
-
+        probabilities[sum-2]++;
     }
 
-    return probArray;
-
+    return probabilities;
 }
 
 var results = getProbabilities();
