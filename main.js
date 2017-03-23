@@ -4,33 +4,52 @@ function renderHTML() {
 
 /******************************************************************************/
 function Card(suit, value) {
-
     'use strict';
+
     this.suit = suit;
     this.value = value;
-
 }
 
 function Deck() {
-  console.log('make me a card');
-    'use strict'
-    this.deck = [];
+    'use strict';
+
+    this.cards = [];
     var suits = ["Hearts", "Spades", "Clubs", "Diamonds"];
     var values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
-    //this.shuffle = shuffle;
-    //this.draw = draw;
+
     for (var s = 0; s < 4; s++) {
         for (var v = 0; v < 13; v++) {
-          this.deck.push(values[v] + ' of ' + suits[s]);
+          var card = new Card(suits[s], values[v]);
+          this.cards.push(card);
         }
     }
-    return this.deck;
+
+    this.shuffle = function() {
+      // http://stackoverflow.com/a/2450976
+        var currentIndex = this.cards.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+
+          // And swap it with the current element.
+          temporaryValue = this.cards[currentIndex];
+          this.cards[currentIndex] = this.cards[randomIndex];
+          this.cards[randomIndex] = temporaryValue;
+        }
+    };
+
+    this.draw = function() {
+        return this.cards[Math.floor(Math.random()*this.cards.length)];
+    }
 }
 
-var card1 = new Card('Hearts', 'Queen');
-console.log(card1);
-var newDeck = Deck();
-console.log(newDeck);
+var newDeck = new Deck();
+newDeck.shuffle();
+console.log(newDeck.draw());
 
 /******************************************************************************/
 function Dice(sides) {
